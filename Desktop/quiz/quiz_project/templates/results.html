@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+  <title>Quiz Results</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Results</h1>
+    <p>You scored {{ score }} out of {{ total_score }}.</p>
+
+    <a href="{% url 'quiz' %}" class="btn btn-primary">Take another quiz</a>
+  </div>
+</body>
+</html>
+

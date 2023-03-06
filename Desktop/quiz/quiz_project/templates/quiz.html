@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Question {{ question_number }} of {{ total_questions }}</h1>
+        <div class="message-box">
+            <p class="message {% if not message %}hidden{% endif %}">{{ message }}</p>
+        </div>
+        {% comment %} <p>{{ message }}</p> {% endcomment %}
+        <form method="POST" action="{% url 'quiz' %}">
+            {% csrf_token %}
+            <h2>{{ quiz.question }}</h2>
+            {% for answer in answers %}
+                <div class="answer">
+                    <input type="radio" id="{{ answer.id }}" name="answer" value="{{ answer.id }}">
+                    <label for="{{ answer.id }}">{{ answer.text }}</label>
+                </div>
+            {% endfor %}
+            {% if question_number == total_questions %}
+                <div class="button-container">
+                    <input type="submit" class="button finish" value="Finish">
+                </div>
+            {% else %}
+                <div class="button-container">
+                    <input type="submit" class="button next" value="Next">
+                </div>
+            {% endif %}
+        </form>
+        
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
